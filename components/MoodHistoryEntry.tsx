@@ -18,9 +18,11 @@ const formatDate = (dateStr: string): string => {
   return new Date(dateStr).toISOString().split("T")[0];
 };
 
-const MoodHistoryEntry: FC<{ entry: MoodEntry }> = memo(({ entry }) => {
+const MoodHistoryEntryComponent: FC<{ entry: MoodEntry }> = ({ entry }) => {
   const { emoji, gradient } = moodDetails[entry.mood];
 
+  
+  
   return (
     <div className="bg-gray-800 dark:bg-gray-700 p-6 rounded-lg shadow-md w-full">
       <div className="flex items-center justify-between">
@@ -28,7 +30,7 @@ const MoodHistoryEntry: FC<{ entry: MoodEntry }> = memo(({ entry }) => {
           <div
             className={`w-14 h-14 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center`}
             aria-label={`Mood: ${entry.mood}`}
-          >
+            >
             <span className="text-3xl">{emoji}</span>
           </div>
           <div className="flex flex-col">
@@ -46,6 +48,9 @@ const MoodHistoryEntry: FC<{ entry: MoodEntry }> = memo(({ entry }) => {
       </div>
     </div>
   );
-});
+};
+
+const MoodHistoryEntry = memo(MoodHistoryEntryComponent);
 
 export default MoodHistoryEntry;
+
